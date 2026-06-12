@@ -34,11 +34,22 @@ LOGO_CLUB = _first_existing([
 ])
 AUTHOR = "Ramón Codesido"
 
-# System TTF font paths (macOS) — fallback to built-in if not found
-_FONTS_DIR = Path("/System/Library/Fonts/Supplemental")
-FONT_REGULAR = _FONTS_DIR / "Arial.ttf"
-FONT_BOLD = _FONTS_DIR / "Arial Bold.ttf"
-FONT_ITALIC = _FONTS_DIR / "Arial Italic.ttf"
+# Prefer Arial locally and use Matplotlib's bundled DejaVu fonts in deployments.
+# Core PDF fonts such as Helvetica cannot encode Spanish accents or the euro sign.
+_SYSTEM_FONTS_DIR = Path("/System/Library/Fonts/Supplemental")
+_MPL_FONTS_DIR = Path(matplotlib.get_data_path()) / "fonts" / "ttf"
+FONT_REGULAR = _first_existing([
+    _SYSTEM_FONTS_DIR / "Arial.ttf",
+    _MPL_FONTS_DIR / "DejaVuSans.ttf",
+])
+FONT_BOLD = _first_existing([
+    _SYSTEM_FONTS_DIR / "Arial Bold.ttf",
+    _MPL_FONTS_DIR / "DejaVuSans-Bold.ttf",
+])
+FONT_ITALIC = _first_existing([
+    _SYSTEM_FONTS_DIR / "Arial Italic.ttf",
+    _MPL_FONTS_DIR / "DejaVuSans-Oblique.ttf",
+])
 _USE_TTF = FONT_REGULAR.exists() and FONT_BOLD.exists()
 
 # ── Color palette (RGB tuples, print-friendly on white) ───────────────────────

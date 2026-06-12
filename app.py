@@ -1127,7 +1127,18 @@ def build_plot(df: pd.DataFrame):
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(10,23,65,0.82)",
         font=dict(color="#dfe7ff"),
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0, bgcolor="rgba(0,0,0,0)"),
+        legend=dict(
+            title=dict(text="Competición", font=dict(color="#ffffff", size=13)),
+            font=dict(color="#f3f7ff", size=12),
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="left",
+            x=0,
+            bgcolor="rgba(7,18,53,0.78)",
+            bordercolor="rgba(123,207,255,0.22)",
+            borderwidth=1,
+        ),
     )
     fig.update_xaxes(gridcolor="rgba(123,207,255,0.12)", zerolinecolor="rgba(123,207,255,0.12)")
     fig.update_yaxes(gridcolor="rgba(123,207,255,0.12)", zerolinecolor="rgba(123,207,255,0.12)")
