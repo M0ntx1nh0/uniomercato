@@ -38,6 +38,7 @@ Thumbs.db
 dashboard/
 .cache/
 data/*.csv
+assets/
 report*.pdf
 *.tmp
 
